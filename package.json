@@ -1,0 +1,53 @@
+{
+  "name": "@meumobi/mmb-media-provider",
+  "version": "0.0.1",
+  "description": "A angular service to handle media on meumobi apps",
+  "main": "./dist/index.js",
+  "typings": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "ngc": "ngc",
+    "build": "rm -rf aot dist && npm run ngc",
+    "publishPackage": "npm run build && npm publish",
+    "prepublish": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meumobi/mmb-media-provider.git"
+  },
+  "keywords": [
+    "media",
+    "angular",
+    "ngx",
+    "meumobi",
+    "handler"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/meumobi/mmb-media-provider/issues"
+  },
+  "homepage": "https://github.com/meumobi/mmb-media-provider/issues#readme",
+  "devDependencies": {
+    "@angular/common": "^4.0.0",
+    "@angular/compiler": "^4.0.0",
+    "@angular/compiler-cli": "^4.0.0",
+    "@angular/core": "^4.0.0",
+    "@angular/platform-browser": "^4.0.0",
+    "@angular/platform-browser-dynamic": "^4.0.0",
+    "@types/node": "^6.0.60",
+    "zone.js": "^0.8.4",
+    "rxjs": "^5.4.0",
+    "typescript": "^2.3.4"
+  },
+  "dependencies": {
+    "@ionic-native/file": "^4.19.0",
+    "@ionic-native/file-opener": "^4.19.0",
+    "@ionic-native/file-transfer": "^4.19.0",
+    "@ionic/storage": "^2.2.0",
+    "ionic-angular": "^3.9.4",
+    "ts-md5": "^1.2.4"
+  }
+}
