@@ -1,6 +1,6 @@
 {
   "name": "@meumobi/mmb-media-provider",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A angular service to handle media on meumobi apps",
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",
@@ -43,11 +43,13 @@
     "typescript": "^2.3.4"
   },
   "dependencies": {
-    "@ionic-native/file": "^4.19.0",
-    "@ionic-native/file-opener": "^4.19.0",
-    "@ionic-native/file-transfer": "^4.19.0",
-    "@ionic/storage": "^2.2.0",
-    "ionic-angular": "^3.9.4",
+    "@ionic-native/core": "4.7.0",
+    "@ionic-native/file": "4.7.0",
+    "@ionic-native/file-opener": "4.7.0",
+    "@ionic-native/file-transfer": "4.7.0",
+    "@ionic-native/in-app-browser": "4.7.0",
+    "@ionic/storage": "2.1.3",
+    "ionic-angular": "^3.9.2",
     "ts-md5": "^1.2.4"
   }
 }
