@@ -1,9 +1,9 @@
 {
   "name": "@meumobi/mmb-media-provider",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A angular service to handle media on meumobi apps",
-  "main": "./dist/index.js",
-  "typings": "./dist/index.d.ts",
+  "main": "./dist/src/index.js",
+  "typings": "./dist/src/index.d.ts",
   "files": [
     "dist"
   ],
