@@ -1,12 +1,11 @@
 import { FileTransfer } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Storage } from '@ionic/storage';
 import { FileOpener } from '@ionic-native/file-opener';
 import { Md5 } from 'ts-md5/dist/md5';
 import { Platform } from 'ionic-angular/platform/platform';
-import { Observable } from 'rxjs/Observable';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class MediaService {
@@ -84,12 +83,15 @@ export class MediaService {
     );
   }
 
-  public remove(file) {
-    this.removeFile(file);
+  public remove(file) {    
     return this.getFileEntry(file.fullPath)
     .then(
       () => {
-        this.file.removeFile(this.file.dataDirectory, file.path);
+        this.file.removeFile(this.file.dataDirectory, file.path).then(
+          () => {
+            this.removeFile(file);
+          }
+        );
         file.status = 'download';
         return file;
       }
@@ -184,17 +186,21 @@ export class MediaService {
 
   private addFile(file) {
     this.files[file.path] = file;
-    this.files$.next(this.files);
-    this.storage.set('files', this.files);
+    this.storage.set('files', this.files)
+    .then(
+      () => this.files$.next(this.files)
+    );
   }
 
   private removeFile(file) {
     delete this.files[file.path];
-    this.files$.next(this.files);
-    this.storage.set('files', this.files);
+    this.storage.set('files', this.files).then(
+      () => this.files$.next(this.files)
+    );
   }
 
   public getFilesObserver(): Observable<any> {
+    this.getFilesFromStorage();
     return this.files$.asObservable();
   }
 }
