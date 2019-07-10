@@ -6,10 +6,12 @@ import { Storage } from '@ionic/storage';
 import { FileOpener } from '@ionic-native/file-opener';
 import { Md5 } from 'ts-md5/dist/md5';
 import { Platform } from 'ionic-angular/platform/platform';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class MediaService {
   private files = {};
+  private files$ = new BehaviorSubject({});
   private fileTranfers = {};
 
   private options = {
@@ -67,14 +69,16 @@ export class MediaService {
     private fileOpener: FileOpener,
     public plt: Platform
   ) {
+    this.getFilesFromStorage();
   }
 
-  public async getFilesFromStorage() {
+  private getFilesFromStorage() {
     return this.storage.get('files')
     .then(
       (data) => {
         if (data) {
           this.files = data;
+          this.files$.next(this.files);
         }
       }
     );
@@ -180,12 +184,18 @@ export class MediaService {
 
   private addFile(file) {
     this.files[file.path] = file;
+    this.files$.next(this.files);
     this.storage.set('files', this.files);
   }
 
   private removeFile(file) {
     delete this.files[file.path];
+    this.files$.next(this.files);
     this.storage.set('files', this.files);
+  }
+
+  public getFilesObserver(): Observable<any> {
+    return this.files$.asObservable();
   }
 }
 
