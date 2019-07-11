@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.1.1"></a>
+## [0.1.1](https://github.com/meumobi/mmb-media-provider/compare/v0.0.7...v0.1.1) (2019-07-11)
+
+
+
 <a name="0.0.7"></a>
 ## [0.0.7](https://github.com/meumobi/mmb-media-provider/compare/v0.2.0...v0.0.7) (2019-07-11)
 
