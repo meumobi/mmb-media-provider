@@ -67,14 +67,17 @@ export class MediaService {
     private file: File,
     private fileOpener: FileOpener,
     public plt: Platform
-  ) {}
+  ) {    
+    this.getFilesFromStorage();
+  }
 
-  public async getFilesFromStorage() {
+  private async getFilesFromStorage() {
     return this.storage.get('files')
     .then(
       (data) => {
         if (data) {
             this.files = data;
+            this.files$.next(this.files);
         }
         return this.files;
       }
@@ -192,16 +195,13 @@ export class MediaService {
 
   private removeFile(file) {
     delete this.files[file.path];
-    this.storage.set('files', this.files).then(
+    this.storage.set('files', this.files)
+    .then(
       () => this.files$.next(this.files)
     );
   }
 
   public getFilesObserver(): Observable<any> {
-    this.getFilesFromStorage()
-    .then(
-      () => this.files$.next(this.files)
-    );   
     return this.files$.asObservable();
   }
 }
